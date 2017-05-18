@@ -1,0 +1,17 @@
+ {
+  "manifest_version": 2,
+
+  "name": "Supreme",
+  "description": "Sick of all the bullcrap new tab extensions!",
+  "version": "1.0",
+
+     "icons": {
+	 "16":"home16.png",
+	 "48":"home48.png",
+    "128": "home128.png"
+  },
+  "chrome_url_overrides": {
+	 "newtab": "supreme_newtab.html"
+     }
+ 
+}
