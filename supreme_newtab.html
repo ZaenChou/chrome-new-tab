@@ -5,80 +5,109 @@
       New Tab
     </title>
     <style>
+      html, body, #app {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        margin: 0px;
+        user-select: none;
+      }
+      #app {
+        background-repeat:   no-repeat;
+        background-size:     cover;
+      }
       #link_wrapper {
         width: 500px;
-        background: rgba(255, 255, 255, 50);
-      }
-      body {
-        color: #1f2323;
-        margin: 0px;
+        height: 100%;
+        overflow: scroll;
+        background: rgba(0, 0, 0, 0.5);
       }
       a {
         display: block;
         margin: 0em;
         padding: 1em;
-        color: #6d6745;
-        transition: color 0.5s, padding-left 0.5s;
+        color: #ffffff;
+        transition: padding-left 0.5s, opacity 0.5s;
+        opacity: 0.7;
       }
       a:hover {
-        color: #0c0b07;
+        color: #ffffff;
         padding-left: 2em;
+        opacity: 1.0;
       }
-      #switch {
-        margin: 2em;
+      #buttons {
+        padding: 0px;
+        margin: 0px;
         position: fixed;
-        right: 0px;
-        bottom: 0px;
+        right: 5em;
+        bottom: 3em;
       }
-      #switch span.active {
-        background-color: #98b5b1;
-      }
-      #switch span {
+      #prev, #next, #add, #remove {
         padding: 1em;
         border-radius: 5px;
-        background-color: #b3cccc;
+        float: left;
+        margin-left: 3px;
+        margin-right: 3px;
       }
-      #switch span:hover {
-        background-color: #98b5b1;
+      #prev, #next {
+        background-color: #dddddd;
+        opacity: 0.9;
+      }
+      #prev {
+        margin-right: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-right: 1px gray solid;
+      }
+      #next {
+        margin-left: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+      #prev:hover, #next:hover {
+        opacity: 0.5;
         cursor: pointer;
       }
-      
-      /* ここが背景の設定 */
-      .style_bg1 {  }
-      .style_bg2 {  }
-      .style_bg3 {  }
-      .style_bg4 {  }
+      #add {
+        background-color: #5697ff;
+        opacity: 0.9;
+      }
+      #add:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+      #remove {
+        background-color: #ff6656;
+        opacity: 0.9;
+      }
+      #remove:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
     </style>
   <head>
   <body>
-    <div id="link_wrapper">
-      <a href="https://www.youtube.com">Youtube</a>
-      <a href="https://www.pornhub.com">Pornhub</a>
-      <a href="http://movie.eroterest.net">Eroterest</a>
-      <a href="https://moneyforward.com">Moneyforward</a>
-      <a href="https://www.github.com">Github</a>
-      <a href="https://www.inbox.google.com">Inbox</a>
-      <a href="https://www.i-skylark.com/login.aspx">Skylark</a>
-      <a href="http://www.kuronekoyamato.co.jp/webservice_guide/sai_off.html">Yamato</a>
-      <a href="https://trackings.post.japanpost.jp/delivery/deli/">Japan Post</a>
-      <a href="https://www.e-service.sagawa-exp.co.jp/e/f.d?x=f5ivq1S%2BgbMNaMuohYmRUXMy0qB1XTHWH8I%2FXPpQ6sw2bGmG1tcMWSvsi%2FOE1tdxqww1O4ZLdxor7IvzhNbXcSvsi%2FOE1tdxK%2ByL84TW13Er7IvzhNbXcSvsi%2FOE1tdxiFGXqYW%2F2YS5pvx3VZxjqw%3D%3D">Sagawa</a>
-      <a href="http://www.bbc.co.uk/">BBC</a>
+    <div id="app" v-bind:style="{ backgroundImage: backgrounds[background_id] }">
+      <div id="link_wrapper">
+        <a v-for="l in links" v-bind:href="l[0]">{{ l[1] }}</a>
+      </div>
+      <div id="buttons">
+        <div id="prev" v-on:click="prevBackground()">
+          prev
+        </div>
+        <div id="next" v-on:click="nextBackground()">
+          next
+        </div>
+        <label for="file-upload" id="add">
+          add background
+        </label>
+        <input id="file-upload" type="file" style="display: none;" v-on:change="addBackground" accept="image/*"/>
+        <div id="remove" v-on:click="removeBackgroundById(background_id)">
+          remove this background
+        </div>
+      </div>
     </div>
-    <div id="switch">
-      <span id="bg1">bg1(default)</span>
-      <span id="bg2">bg2</span>
-      <span id="bg3">bg3</span>
-      <span id="bg4">bg4</span>
-    </div>
-    <script src="jquery-3.2.1.min.js"></script>
-    <script>
-      $("#bg1").attr("class", "active");
-      $("body").attr("class", "style_bg1");
-      $("#switch>span").click(function () {
-        $("body").attr("class", "style_" + $(this).attr("id"));
-        $("#switch>span").attr("class", "");
-        $(this).attr("class", "active");
-      });
-    </script>
+    <script src="vue.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
