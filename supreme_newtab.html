@@ -1,31 +1,113 @@
+<!DOCTYPE html>
 <html>
-  <title>
-    New Tab
+  <head>
+    <title>
+      New Tab
     </title>
-
+    <style>
+      html, body, #app {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        margin: 0px;
+        user-select: none;
+      }
+      #app {
+        background-repeat:   no-repeat;
+        background-size:     cover;
+      }
+      #link_wrapper {
+        width: 500px;
+        height: 100%;
+        overflow: scroll;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      a {
+        display: block;
+        margin: 0em;
+        padding: 1em;
+        color: #ffffff;
+        transition: padding-left 0.5s, opacity 0.5s;
+        opacity: 0.7;
+      }
+      a:hover {
+        color: #ffffff;
+        padding-left: 2em;
+        opacity: 1.0;
+      }
+      #buttons {
+        padding: 0px;
+        margin: 0px;
+        position: fixed;
+        right: 5em;
+        bottom: 3em;
+      }
+      #prev, #next, #add, #remove {
+        padding: 1em;
+        border-radius: 5px;
+        float: left;
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+      #prev, #next {
+        background-color: #dddddd;
+        opacity: 0.9;
+      }
+      #prev {
+        margin-right: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-right: 1px gray solid;
+      }
+      #next {
+        margin-left: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+      #prev:hover, #next:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+      #add {
+        background-color: #5697ff;
+        opacity: 0.9;
+      }
+      #add:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+      #remove {
+        background-color: #ff6656;
+        opacity: 0.9;
+      }
+      #remove:hover {
+        opacity: 0.5;
+        cursor: pointer;
+      }
+    </style>
+  <head>
   <body>
-    <a href="https://www.youtube.com">Youtube</a><br>
-    <a href="https://www.pornhub.com">Pornhub</a><br>
-    <a href="http://movie.eroterest.net">Eroterest</a><br>
-    <a href="https://moneyforward.com">Moneyforward</a><br>
-    <a href="https://www.github.com">Github</a><br>
-    <a href="https://www.inbox.google.com">Inbox</a><br>
-    <a href="https://www.i-skylark.com/login.aspx">Skylark</a><br>
-    <a href="http://www.kuronekoyamato.co.jp/webservice_guide/sai_off.html">Yamato</a><br>
-    <a href="https://trackings.post.japanpost.jp/delivery/deli/">Japan Post</a><br>
-    <a href="https://www.e-service.sagawa-exp.co.jp/e/f.d?x=f5ivq1S%2BgbMNaMuohYmRUXMy0qB1XTHWH8I%2FXPpQ6sw2bGmG1tcMWSvsi%2FOE1tdxqww1O4ZLdxor7IvzhNbXcSvsi%2FOE1tdxK%2ByL84TW13Er7IvzhNbXcSvsi%2FOE1tdxiFGXqYW%2F2YS5pvx3VZxjqw%3D%3D">Sagawa</a><br>
-    <a href="http://www.bbc.co.uk/">BBC</a>
-    <div id="switch">
-      <span id="bg1">bg1</span>
-      <span id="bg2">bg2</span>
-      <span id="bg3">bg3</span>
-      <span id="bg4">bg4</span>
+    <div id="app" v-bind:style="{ backgroundImage: backgrounds[background_id] }">
+      <div id="link_wrapper">
+        <a v-for="l in links" v-bind:href="l[0]">{{ l[1] }}</a>
+      </div>
+      <div id="buttons">
+        <div id="prev" v-on:click="prevBackground()">
+          prev
+        </div>
+        <div id="next" v-on:click="nextBackground()">
+          next
+        </div>
+        <label for="file-upload" id="add">
+          add background
+        </label>
+        <input id="file-upload" type="file" style="display: none;" v-on:change="addBackground" accept="image/*"/>
+        <div id="remove" v-on:click="removeBackgroundById(background_id)">
+          remove this background
+        </div>
+      </div>
     </div>
-    <script src="jquery-3.2.1.min.js"></script>
-    <script>
-      $("#switch>*").each(function(){
-        
-      });
-    </script>
+    <script src="vue.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
