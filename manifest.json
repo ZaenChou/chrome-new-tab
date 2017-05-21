@@ -11,9 +11,9 @@
   ],
 
   "icons": {
-    "16":"home16.png",
-    "48":"home48.png",
-    "128": "home128.png"
+    "16":"icon/home16.png",
+    "48":"icon/home48.png",
+    "128": "icon/home128.png"
   },
   "chrome_url_overrides": {
     "newtab": "supreme_newtab.html"
