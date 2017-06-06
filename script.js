@@ -14,15 +14,15 @@ var initial_links = [
   ["http://www.bbc.co.uk/", "BBC"]
 ];
 var initial_backgrounds = [
-  "url(bg/bg1.jpg)", 
+  "url(bg/bg1.jpg)",
   "url(bg/bg2.jpg)",
-  "url(bg/bg3.jpg)", 
+  "url(bg/bg3.jpg)",
   "url(bg/bg4.jpg)",
-  "url(bg/bg5.jpg)", 
+  "url(bg/bg5.jpg)",
   "url(bg/bg6.jpg)",
-  "url(bg/bg7.jpg)", 
+  "url(bg/bg7.jpg)",
   "url(bg/bg8.jpg)",
-  "url(bg/bg9.jpg)", 
+  "url(bg/bg9.jpg)",
   "url(bg/bg10.jpg)",
   "url(bg/bg11.jpg)",
   "url(bg/bg12.jpg)",
@@ -40,7 +40,8 @@ var app = new Vue({
     background_id: 0,
     links: [],
     backgrounds: [],
-    processing: false
+    processing: false,
+    popup: false
   },
   methods: {
     prevBackground: function () {
