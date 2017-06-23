@@ -4,113 +4,23 @@
     <title>
       New Tab
     </title>
-    <style>
-      html, body, #app {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        margin: 0px;
-        user-select: none;
-      }
-      #app {
-        background-repeat:   no-repeat;
-        background-size:     cover;
-      }
-      #link_wrapper {
-        width: 500px;
-        height: 100%;
-        overflow: scroll;
-        background: rgba(0, 0, 0, 0.5);
-      }
-      a {
-        display: block;
-        margin: 0em;
-        padding: 1em;
-        color: #ffffff;
-        transition: padding-left 0.5s, opacity 0.5s;
-        opacity: 0.7;
-      }
-      a:hover {
-        color: #ffffff;
-        padding-left: 2em;
-        opacity: 1.0;
-      }
-      #popup {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: rgb(255, 255, 255);
-        z-index: 100;
-      }
-      #buttons {
-        padding: 0px;
-        margin: 0px;
-        position: fixed;
-        right: 5em;
-        bottom: 3em;
-      }
-      #prev, #next, #add, #remove, #config {
-        padding: 1em;
-        border-radius: 5px;
-        float: left;
-        margin-left: 3px;
-        margin-right: 3px;
-      }
-      #prev, #next, #config {
-        background-color: #dddddd;
-        opacity: 0.9;
-      }
-      #config {
-        opacity: 0.9;
-      }
-      #config:hover {
-        opacity: 0.5;
-        cursor: pointer;
-      }
-      #prev {
-        margin-right: 0px;
-        border-top-right-radius: 0px;
-        border-bottom-right-radius: 0px;
-        border-right: 1px gray solid;
-      }
-      #next {
-        margin-left: 0px;
-        border-top-left-radius: 0px;
-        border-bottom-left-radius: 0px;
-      }
-      #prev:hover, #next:hover {
-        opacity: 0.5;
-        cursor: pointer;
-      }
-      #add {
-        background-color: #5697ff;
-        opacity: 0.9;
-      }
-      #add:hover {
-        opacity: 0.5;
-        cursor: pointer;
-      }
-      #remove {
-        background-color: #ff6656;
-        opacity: 0.9;
-      }
-      #remove:hover {
-        opacity: 0.5;
-        cursor: pointer;
-      }
-    </style>
-  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
   <body>
-    <div id="app" v-bind:style="{ backgroundImage: backgrounds[background_id] }">
-      <div id="link_wrapper">
-        <a v-for="l in links" v-bind:href="l[0]">{{ l[1] }}</a>
-      </div>
-      <div id="buttons">
-        <div id="config" v-on:click="popup = true">
-          config
+    <div id="app">
+      <div id="main" v-bind:style="{ backgroundImage: backgrounds[background_id] }" v-bind:class="{ blur: popup }">
+        <div id="link_wrapper">
+          <a v-for="l in links" v-bind:href="l[0]">{{ l[1] }}</a>
+        </div>
+        <div id="buttons">
+          <div class="button" id="config" v-on:click="popup = true">
+            config
+          </div>
         </div>
       </div>
-      <div id="popup" v-bind:style="{ display: popup ? 'block' : 'none' }">
+      <div id="popup" v-bind:class="{ visible: popup }">
+        <div id="popup_window">
+        </div>
       </div>
       <!--
       <div id="buttons">
@@ -128,9 +38,10 @@
           remove this background
         </div>
       </div>
-    -->
+      -->
     </div>
     <script src="vue.min.js"></script>
+    <script src="vue-router.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
