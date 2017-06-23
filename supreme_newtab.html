@@ -7,19 +7,28 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <script type="x/template" id="bg-template">
+      <div id="panel_right">
+        <h1>Bg Configuration</h1>
+      </div>
+    </script>
     <div id="app">
       <div id="main" v-bind:style="{ backgroundImage: backgrounds[background_id] }" v-bind:class="{ blur: popup }">
         <div id="link_wrapper">
           <a v-for="l in links" v-bind:href="l[0]">{{ l[1] }}</a>
         </div>
         <div id="buttons">
-          <div class="button" id="config" v-on:click="popup = true">
+          <div class="button" id="config" v-on:click="$set('popup', true)">
             config
           </div>
         </div>
       </div>
       <div id="popup" v-bind:class="{ visible: popup }">
         <div id="popup_window">
+          <div id="panel_left">
+            <a v-link="'/bg'">Background</a>
+          </div>
+          <router-view></router-view>
         </div>
       </div>
       <!--

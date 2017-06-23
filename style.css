@@ -20,7 +20,7 @@ html, body, #app, #main {
   width: 500px;
   height: 100%;
   overflow: scroll;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   margin-left: 10px;
 }
 a {
@@ -70,16 +70,36 @@ a:hover {
 
 #popup_window {
   position: absolute;
-  width: 500px;
+  width: 100%;
   height: 500px;
   top:  50%;
-  left: 50%;
   margin-top: -250px;
-  margin-left: -250px;
   background: rgba(255, 255, 255, 0.8);
-  border-radius: 4px;
   background-repeat: no-repeat;
   background-size:   cover;
+}
+
+#panel_left {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 130px;
+  height: calc(100% - 20px);
+  border-right: 1px #222222 solid;
+}
+
+#panel_right {
+  position: absolute;
+  top: 0;
+  left: 150px;
+}
+
+#popup_window a {
+  color: #232323;
+}
+
+#popup_window h1 {
+  color: #434343;
 }
 
 #buttons {
