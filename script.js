@@ -33,17 +33,7 @@ var initial_backgrounds = [
   "url(bg/bg17.jpg)"
 ];
 
-var Foo = {
-    template: '#bg-template'
-}
-
-var router = new VueRouter();
-router.map({
-    '/bg': {
-        component: Foo
-    }
-});
-
+// create app
 var App = {
   el: '#app',
   data: {
@@ -86,11 +76,18 @@ var App = {
   }
 };
 
-var app = undefined;
+var router = new VueRouter()
+
+router.map({
+  '/background': {
+    component: {
+      template: 'hello!'
+    }
+  }
+});
 
 router.start(App, '#app', function () {
-  app = router.app;
-
+  var app = router.app;
   // load links
   chrome.storage.local.get("links", function (get) {
     if (get.links === undefined) {

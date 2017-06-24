@@ -13,7 +13,8 @@
       </div>
     </script>
     <div id="app">
-      <div id="main" v-bind:style="{ backgroundImage: backgrounds[background_id] }" v-bind:class="{ blur: popup }">
+      <div id="main" v-bind:class="{ blur: popup }">
+        <div id="background" v-bind:style="{ backgroundImage: backgrounds[background_id] }"></div>
         <div id="link_wrapper">
           <a v-for="l in links" v-bind:href="l[0]">{{ l[1] }}</a>
         </div>
@@ -26,7 +27,7 @@
       <div id="popup" v-bind:class="{ visible: popup }">
         <div id="popup_window">
           <div id="panel_left">
-            <a v-link="'/bg'">Background</a>
+            <a v-link="'/background'">Background Setting</a>
           </div>
           <router-view></router-view>
         </div>

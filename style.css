@@ -5,12 +5,16 @@ html, body, #app, #main {
   margin: 0px;
   user-select: none;
 }
-#main {
-  background-repeat: no-repeat;
-  background-size:   cover;
-  padding: 10px;
-  margin-top: -10px;
-  margin-left: -10px;
+#background {
+  height: calc(100% + 40px);
+  width: calc(100% + 40px);
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  z-index: -100;
+  background-repeat:   no-repeat;
+  background-size:     cover;
+  background-position: center;
 }
 #main.blur {
   filter: blur(5px);
@@ -20,29 +24,38 @@ html, body, #app, #main {
   width: 500px;
   height: 100%;
   overflow: scroll;
-  background: rgba(0, 0, 0, 0.7);
-  margin-left: 10px;
+  background: rgba(0, 0, 0, 0.5);
 }
 a {
   display: block;
   margin: 0em;
-  padding: 1em;
+  padding: 14px;
   color: #ffffff;
-  transition: padding-left 0.5s, opacity 0.5s;
+  transition: opacity 0.5s, font-size 0.5s;
   opacity: 0.7;
+  line-height: 16px;
 }
 a:hover {
-  color: #ffffff;
-  padding-left: 2em;
   opacity: 1.0;
+  font-size: 150%;
+}
+#popup a {
+  color: #000000;
+}
+#popup h1 {
+  color: #434343;
 }
 #popup {
   display: none;
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  border-radius: 4px;
+  z-index: 100;
+  margin: 20px;
+  background: rgba(255, 255, 255, 0.8);
   animation: fadeout 0.3s linear 0s;
 }
 #popup.visible {
@@ -67,39 +80,13 @@ a:hover {
     opacity: 0;
   }
 }
-
-#popup_window {
-  position: absolute;
-  width: 100%;
-  height: 500px;
-  top:  50%;
-  margin-top: -250px;
-  background: rgba(255, 255, 255, 0.8);
-  background-repeat: no-repeat;
-  background-size:   cover;
-}
-
 #panel_left {
-  position: absolute;
-  top: 10px;
-  left: 0;
-  width: 130px;
-  height: calc(100% - 20px);
-  border-right: 1px #222222 solid;
+  width: 20%;
+  height: 100%;
+  float: left;
 }
-
 #panel_right {
-  position: absolute;
-  top: 0;
-  left: 150px;
-}
-
-#popup_window a {
-  color: #232323;
-}
-
-#popup_window h1 {
-  color: #434343;
+  float: left;
 }
 
 #buttons {
