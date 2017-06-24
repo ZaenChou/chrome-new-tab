@@ -34,7 +34,7 @@ var initial_backgrounds = [
 ];
 
 // create app
-var app = new Vue({
+var App = {
   el: '#app',
   data: {
     background_id: 0,
@@ -74,34 +74,47 @@ var app = new Vue({
       reader.readAsDataURL(files[0]);
     }
   }
-});
+};
 
-// load links
-chrome.storage.local.get("links", function (get) {
-  if (get.links === undefined) {
-    chrome.storage.local.set({"links": initial_links});
-    app.$set("links", initial_links);
-  } else {
-    app.$set("links", get.links);
+var router = new VueRouter()
+
+router.map({
+  '/background': {
+    component: {
+      template: 'hello!'
+    }
   }
 });
 
-// load backgrounds
-chrome.storage.local.get("backgrounds", function (get) {
-  if (get.backgrounds === undefined) {
-    chrome.storage.local.set({"backgrounds": initial_backgrounds});
-    app.$set("backgrounds", initial_backgrounds);
-  } else {
-    app.$set("backgrounds", get.backgrounds);
-  }
-});
+router.start(App, '#app', function () {
+  var app = router.app;
+  // load links
+  chrome.storage.local.get("links", function (get) {
+    if (get.links === undefined) {
+      chrome.storage.local.set({"links": initial_links});
+      app.$set("links", initial_links);
+    } else {
+      app.$set("links", get.links);
+    }
+  });
 
-// load background id
-chrome.storage.local.get("background_id", function (get) {
-  if (get.background_id === undefined) {
-    chrome.storage.local.set({"background_id": initial_background_id});
-    app.$set("background_id", initial_background_id);
-  } else {
-    app.$set("background_id", get.background_id);
-  }
+  // load backgrounds
+  chrome.storage.local.get("backgrounds", function (get) {
+    if (get.backgrounds === undefined) {
+      chrome.storage.local.set({"backgrounds": initial_backgrounds});
+      app.$set("backgrounds", initial_backgrounds);
+    } else {
+      app.$set("backgrounds", get.backgrounds);
+    }
+  });
+
+  // load background id
+  chrome.storage.local.get("background_id", function (get) {
+    if (get.background_id === undefined) {
+      chrome.storage.local.set({"background_id": initial_background_id});
+      app.$set("background_id", initial_background_id);
+    } else {
+      app.$set("background_id", get.background_id);
+    }
+  });
 });

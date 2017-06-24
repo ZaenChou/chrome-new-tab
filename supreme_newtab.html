@@ -5,16 +5,23 @@
       New Tab
     </title>
     <style>
-      html, body, #app {
+      html, body, #app, #mask {
         height: 100%;
         width: 100%;
         overflow: hidden;
         margin: 0px;
         user-select: none;
       }
-      #app {
+      #background {
+        height: calc(100% + 40px);
+        width: calc(100% + 40px);
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        z-index: -100;
         background-repeat:   no-repeat;
         background-size:     cover;
+        background-position: center;
       }
       #link_wrapper {
         width: 500px;
@@ -25,22 +32,37 @@
       a {
         display: block;
         margin: 0em;
-        padding: 1em;
+        padding: 14px;
         color: #ffffff;
-        transition: padding-left 0.5s, opacity 0.5s;
+        transition: opacity 0.5s, font-size 0.5s;
         opacity: 0.7;
+        line-height: 16px;
       }
       a:hover {
-        color: #ffffff;
-        padding-left: 2em;
         opacity: 1.0;
+        font-size: 150%;
+      }
+      #popup a {
+        color: #000000;
       }
       #popup {
         position: absolute;
-        width: 100%;
-        height: 100%;
-        background: rgb(255, 255, 255);
+        top: 0px;
+        left: 0px;
+        width: calc(100% - 40px);
+        height: calc(100% - 40px);
+        border-radius: 4px;
         z-index: 100;
+        margin: 20px;
+        background: rgba(255, 255, 255, 0.8);
+      }
+      #sidebar {
+        width: 20%;
+        height: 100%;
+        float: left;
+      }
+      #setting {
+        float: left;
       }
       #buttons {
         padding: 0px;
@@ -101,16 +123,25 @@
     </style>
   <head>
   <body>
-    <div id="app" v-bind:style="{ backgroundImage: backgrounds[background_id] }">
-      <div id="link_wrapper">
-        <a v-for="l in links" v-bind:href="l[0]">{{ l[1] }}</a>
-      </div>
-      <div id="buttons">
-        <div id="config" v-on:click="popup = true">
-          config
+    <div id="app">
+      <div id="mask" v-bind:style="{ filter: popup ? 'blur(10px)' : 'none' }">
+        <div id="background" v-bind:style="{ backgroundImage: backgrounds[background_id] }"></div>
+        <div id="link_wrapper">
+          <a v-for="l in links" v-bind:href="l[0]">{{ l[1] }}</a>
+        </div>
+        <div id="buttons">
+          <div id="config" v-on:click="$set('popup', true)">
+            config
+          </div>
         </div>
       </div>
       <div id="popup" v-bind:style="{ display: popup ? 'block' : 'none' }">
+        <div id="sidebar">
+          <a v-link="'/background'">Background Setting</a>
+        </div>
+        <div id="setting">
+          <router-view></router-view>
+        </div>
       </div>
       <!--
       <div id="buttons">
@@ -130,7 +161,11 @@
       </div>
     -->
     </div>
+    <script type="text/x-template" id="background">
+      hello!
+    </script>
     <script src="vue.min.js"></script>
+    <script src="vue-router.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
