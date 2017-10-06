@@ -2,7 +2,7 @@ var initial_background_id = 0;
 
 
 var initial_links = [
-    ["https://amazon.co.jp" , "Amazon"]
+    ["https://amazon.co.jp" , "Amazon"],
     ["https://www.youtube.com" , "Youtube"],
     ["https://www.pornhub.com", "Pornhub"],
     ["http://movie.eroterest.net", "Eroterest"],
