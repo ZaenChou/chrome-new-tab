@@ -2,6 +2,7 @@ var initial_background_id = 0;
 
 
 var initial_links = [
+<<<<<<< HEAD
     ["https://amazon.co.jp" , "Amazon"]
     ["https://www.youtube.com" , "Youtube"],
     ["https://www.pornhub.com", "Pornhub"],
@@ -14,6 +15,19 @@ var initial_links = [
     ["https://trackings.post.japanpost.jp/delivery/deli/", "Japan Post"],
     ["https://www.e-service.sagawa-exp.co.jp/e/f.d?x=f5ivq1S%2BgbMNaMuohYmRUXMy0qB1XTHWH8I%2FXPpQ6sw2bGmG1tcMWSvsi%2FOE1tdxqww1O4ZLdxor7IvzhNbXcSvsi%2FOE1tdxK%2ByL84TW13Er7IvzhNbXcSvsi%2FOE1tdxiFGXqYW%2F2YS5pvx3VZxjqw%3D%3D", "Sagawa"],
     ["http://www.bbc.co.uk/", "BBC"]
+=======
+  ["https://www.youtube.com", "Youtube"],
+  ["https://www.pornhub.com", "Pornhub"],
+  ["http://movie.eroterest.net", "Eroterest"],
+  ["https://moneyforward.com", "Moneyforward"],
+  ["https://www.github.com", "Github"],
+  ["https://www.inbox.google.com", "Inbox"],
+  ["https://www.i-skylark.com/login.aspx", "Skylark"],
+  ["http://www.kuronekoyamato.co.jp/webservice_guide/sai_off.html", "Yamato"],
+  ["https://trackings.post.japanpost.jp/delivery/deli/", "Japan Post"],
+  ["https://www.e-service.sagawa-exp.co.jp/e/f.d", "Sagawa"],
+  ["http://www.bbc.co.uk/", "BBC"]
+>>>>>>> 99fc2348e31c98ba913f6c7c2df0aa86d6f03749
 ];
 var initial_backgrounds = [
   "url(bg/bg1.jpg)",
